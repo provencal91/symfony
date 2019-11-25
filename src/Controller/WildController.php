@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 
@@ -10,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WildController extends AbstractController
 {
     /**
-     * @Route("/", name="app_index")
+     * @Route("/", name="wild_show_index")
      */
 
     public function index()
