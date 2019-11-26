@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WildController extends AbstractController
 {
     /**
-     * @Route("/", name="wild_show_index")
+     * @Route("wild/show/{slug}", name="wild_show_index")
      */
 
     public function index()
