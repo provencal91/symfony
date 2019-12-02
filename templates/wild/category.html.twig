@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ categoryName.name }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="media">
+        {% for programByCategory in programsByCategory %}
+            {{ programByCategory.id }} // {{ programByCategory.title }}
+            <img class="align-self-start mr-3" src="{{programByCategory.poster}}" alt="poster">
+            <div class="media-body">
+                <h1 class="mt-0">{{ programByCategory.title }}</h1>
+                <p>{{ programByCategory.summary }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

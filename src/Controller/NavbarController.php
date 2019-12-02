@@ -14,7 +14,7 @@ class NavbarController extends AbstractController
 
     public function index()
     {
-        return $this->render('navbar/navbar.html.twig');
+        return $this->render('navbar.html.twig');
     }
 
 }
