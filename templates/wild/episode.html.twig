@@ -1,0 +1,21 @@
+{# templates/wild/episode.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" style="width: 50%; background-color: rgba(255,254,250,0.36)">
+        <h4>Saison {{ seasons.id }} </h4>
+        <img class="poster" src="{{seasons.affiche}}" alt="">
+        <p>{{ seasons.description }}</p>
+
+        <div>
+            <p>Liste des épisodes :</p>
+            <ul>
+                {% for episode in episodes %}
+                    <h5>Episode {{ episode.id }} : {{ episode.title }}</h5>
+                    <p>{{ episode.synopsis }}</p>
+                {% endfor%}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
