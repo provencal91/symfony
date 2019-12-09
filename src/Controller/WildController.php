@@ -8,13 +8,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Program;
 use App\Entity\Category;
+use App\Entity\Season;
+use App\Entity\Episode;
 use App\Repository\CategoryRepository;
+use App\Repository\SeasonRepository;
+use App\Repository\EpisodeRepository;
+use App\Repository\ProgramRepository;
 
 class WildController extends AbstractController
 {
     /**
      * @Route("/", name="wild_index")
-     * @return Response A response instance
+     * @return Response
      */
 
     public function index()
@@ -42,7 +47,7 @@ class WildController extends AbstractController
      * name="wild_show")
      * @return Response
      */
-    public function show(string $slug): Response
+    public function showByProgram(string $slug): Response
     {
         if (!$slug) {
             throw $this
@@ -59,12 +64,16 @@ class WildController extends AbstractController
             throw $this->createNotFoundException(
                 'No program with '.$slug.' title, found in program\'s table.'
             );
-    }
+        }
 
-        // redirection vers la page erreur, correspondant à l'insertion de majuscule dans l'URL
+        $seasons = $this->getDoctrine()->getRepository(Season::class)
+            ->findAll();
+
         return $this->render('wild/show.html.twig', [
             'program' => $program,
             'slug' => $slug,
+            'link' => $_SERVER['REQUEST_URI'],
+            'seasons' =>$seasons
             ]);
 
     }
@@ -74,7 +83,7 @@ class WildController extends AbstractController
      * @Route("wild/category/{categoryName}", name="wild_category")
      * @return Response
      */
-    public function c(string $categoryName): Response
+    public function showByCategory(string $categoryName): Response
     {
         $category= $this->getDoctrine()
             ->getRepository(Category::class)
@@ -84,10 +93,41 @@ class WildController extends AbstractController
             ->findBy(['category' =>$category], ['id'=>'DESC'], 3);
 
 
-        // redirection vers la page erreur, correspondant à l'insertion de majuscule dans l'URL
         return $this->render('wild/category.html.twig', [
             'programsByCategory' => $programs,
             'categoryName' => $category,
         ]);
+    }
+
+    /**
+     * Getting a program with a formatted slug for title
+     *@param string $slug The slugger
+     * @Route("/wild/show/{slug}/{id}",
+     *requirements={"slug"="[a-z0-9-]+"},
+     * defaults={"slug"="Aucune série sélectionnée, veuillez choisir une série"},
+     * name="wild_season")
+     * @return Response
+     */
+    public function showBySeason($id): Response
+    {
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class);
+        $seasons = $season -> findOneBy(['id'=>$id]);
+
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->find($id);
+
+        $episode = $this->getDoctrine()
+            ->getRepository(Episode::class)
+            ->findBy(['season'=>$id]);
+
+
+        return $this->render('wild/episode.html.twig', [
+            'seasons' => $seasons,
+            'episodes' => $episode,
+            'program' => $program
+        ]);
+
     }
 }

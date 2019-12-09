@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,10 +34,25 @@ class Program
     private $poster;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="program")
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program")
+     */
+    private $seasons;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Season", mappedBy="program")
+     */
+    private $program;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+        $this->program = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -83,10 +100,89 @@ class Program
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function addCategory(Category $category): self
     {
-        $this->category = $category;
+        if (!$this->category->contains($category)) {
+
+            $this->category[] = $category;
+            $category->setCategory($this);
+        }
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getCategory() === $this) {
+                $category->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Episode[]
+     */
+    public function getSeasons(): Collection
+    {
+        return $this->seasons;
+    }
+
+    public function addSeasons(Seasons $seasons): self
+    {
+        if (!$this->seasons->contains($seasons)) {
+            $this->seasons[] = $seasons;
+            $seasons->setProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeasons(Seasons $seasons): self
+    {
+        if ($this->seasons->contains($seasons)) {
+            $this->seasons->removeElement($seasons);
+            // set the owning side to null (unless already changed)
+            if ($seasons->getSeason() === $this) {
+                $seasons->setSeason(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Season[]
+     */
+    public function getProgram(): Collection
+    {
+        return $this->program;
+    }
+
+    public function addProgram(Season $program): self
+    {
+        if (!$this->program->contains($program)) {
+            $this->program[] = $program;
+            $program->setProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Season $program): self
+    {
+        if ($this->program->contains($program)) {
+            $this->program->removeElement($program);
+            // set the owning side to null (unless already changed)
+            if ($program->getProgram() === $this) {
+                $program->setProgram(null);
+            }
+        }
 
         return $this;
     }
 }
+
