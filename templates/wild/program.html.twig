@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ program.title }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" style="width: 50%; background-color: rgba(255,254,250,0.36)">
+        <h4>{{ program.title }} </h4>
+        <img class="poster" src="{{program.poster}}" alt="">
+        <p>{{ program.summary }}</p>
+        <div>
+            <p>Liste des saisons :</p>
+            {% for season in seasons %}
+                <ul>
+                    <h5>Saison {{ season.number }}</h5>
+                    <p>{{ season.description }}</p>
+                </ul>
+            {% endfor %}
+        </div>
+
+
+    </div>
+{% endblock %}
