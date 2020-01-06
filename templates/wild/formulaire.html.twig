@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>Ajout d'un Film</p>
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+{% endblock %}

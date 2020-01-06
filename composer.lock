@@ -2858,16 +2858,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v5.0.0",
+            "version": "v5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "e96eea999cf185960b179e96f04b9fa2ac2195d0"
+                "reference": "c57a9fe108cc7747d4e8dfb770a8066b4e906acc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/e96eea999cf185960b179e96f04b9fa2ac2195d0",
-                "reference": "e96eea999cf185960b179e96f04b9fa2ac2195d0",
+                "url": "https://api.github.com/repos/symfony/form/zipball/c57a9fe108cc7747d4e8dfb770a8066b4e906acc",
+                "reference": "c57a9fe108cc7747d4e8dfb770a8066b4e906acc",
                 "shasum": ""
             },
             "require": {
@@ -2938,7 +2938,7 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-21T07:02:40+00:00"
+            "time": "2019-12-16T11:08:25+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -5464,16 +5464,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v5.0.0",
+            "version": "v5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "4c32fbacd1652271be449be4ebc57eb5c4c8793b"
+                "reference": "09af8612c2724960b4a604b65ddfe0ec352091b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/4c32fbacd1652271be449be4ebc57eb5c4c8793b",
-                "reference": "4c32fbacd1652271be449be4ebc57eb5c4c8793b",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/09af8612c2724960b4a604b65ddfe0ec352091b6",
+                "reference": "09af8612c2724960b4a604b65ddfe0ec352091b6",
                 "shasum": ""
             },
             "require": {
@@ -5552,7 +5552,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-18T17:27:11+00:00"
+            "time": "2019-11-30T14:12:50+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -6101,6 +6101,7 @@
                 "code",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-code",
             "time": "2019-10-05T23:18:22+00:00"
         },
         {
@@ -6155,6 +6156,7 @@
                 "events",
                 "zf2"
             ],
+            "abandoned": "laminas/laminas-eventmanager",
             "time": "2018-04-25T15:33:34+00:00"
         }
     ],

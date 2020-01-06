@@ -11,6 +11,15 @@
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
             <p>Categorie : {{ program.category.name }}</p>
+            <div>
+                <hr style="background-color: white">
+                {% for season in seasons %}
+                    <a href="{{ path('wild_show_season',{'season':season.number,'id':season.id}) }}" style="display: inline-block; margin: 0 1em; text-decoration: none;">
+                        <h5 style="color: red">Saison {{ season.number }}</h5>
+                        <hr style="background-color: white">
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
